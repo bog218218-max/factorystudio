@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { LogoMark } from '../ui/LogoMark';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,9 +32,7 @@ export function Header() {
       <div className="max-w-7xl mx-auto">
         <div className={`flex items-center justify-between pointer-events-auto transition-all duration-300 ${isScrolled ? 'bg-industrial-900/80 backdrop-blur-xl border border-industrial-700/50 h-16 md:h-20 px-6 shadow-2xl shadow-black/50' : 'bg-transparent h-20 px-2'}`}>
           <Link to="/" className="flex items-center gap-4 group">
-            <div className="w-10 h-10 bg-accent-500 flex items-center justify-center text-white font-mono font-bold text-sm group-hover:bg-accent-600 transition-colors">
-              SV
-            </div>
+            <LogoMark className="w-10 h-10 group-hover:bg-accent-600" />
             <span className="font-bold text-lg sm:text-xl tracking-wide text-white">СТУДИЯ-ВЕКТОР</span>
           </Link>
 

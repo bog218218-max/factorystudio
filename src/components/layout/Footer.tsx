@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { LogoMark } from '../ui/LogoMark';
 
 export function Footer() {
   return (
@@ -7,9 +8,7 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-4 mb-6">
-              <div className="w-10 h-10 bg-accent-500 flex items-center justify-center text-white font-mono font-bold text-sm">
-                SV
-              </div>
+              <LogoMark />
               <span className="font-bold text-xl tracking-wide text-white">СТУДИЯ-ВЕКТОР</span>
             </Link>
             <p className="text-industrial-400 max-w-sm mb-8 leading-relaxed">
