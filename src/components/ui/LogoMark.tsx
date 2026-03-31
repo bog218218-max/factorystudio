@@ -14,18 +14,17 @@ export function LogoMark({ className = 'w-10 h-10' }: LogoMarkProps) {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <circle cx="9" cy="30" r="2.6" fill="currentColor" />
         <path
-          d="M9 30L18 21L24 27L31 10"
+          d="M10 30L30 10"
           stroke="currentColor"
-          strokeWidth="3.2"
+          strokeWidth="4"
           strokeLinecap="square"
           strokeLinejoin="miter"
         />
         <path
-          d="M24.5 10H31V16.5"
+          d="M22 10H30V18"
           stroke="currentColor"
-          strokeWidth="3.2"
+          strokeWidth="4"
           strokeLinecap="square"
           strokeLinejoin="miter"
         />
