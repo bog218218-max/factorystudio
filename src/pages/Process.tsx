@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 import { ClipboardList, PenTool, LayoutTemplate, Code2, Rocket, Wrench } from 'lucide-react';
 
 const steps = [
@@ -46,7 +47,80 @@ const steps = [
   }
 ];
 
+function ProcessStep({ step, index }: { step: typeof steps[0], index: number }) {
+  const iconRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: iconRef,
+    offset: ["center center", "end center"]
+  });
+  const [isLit, setIsLit] = useState(false);
+  
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setIsLit(latest > 0);
+  });
+
+  return (
+    <div className="relative flex flex-col md:flex-row gap-8 md:gap-20 group">
+      {/* Icon / Number */}
+      <div className="relative z-10 flex items-start md:items-center gap-6 md:w-[100px] shrink-0">
+        <div ref={iconRef} className={`w-16 h-16 md:w-24 md:h-24 bg-industrial-900 border-4 flex items-center justify-center shrink-0 transition-all duration-300 rounded-full ${isLit ? 'border-accent-500 shadow-[0_0_40px_rgba(255,77,0,0.3)]' : 'border-industrial-800'}`}>
+          <step.icon className={`w-8 h-8 md:w-10 md:h-10 transition-all duration-300 ${isLit ? 'text-accent-500 scale-110' : 'text-industrial-600'}`} />
+        </div>
+        <div className={`md:hidden text-5xl font-bold font-mono tracking-tighter transition-colors duration-300 ${isLit ? 'text-accent-500/50' : 'text-industrial-800'}`}>
+          0{index + 1}
+        </div>
+      </div>
+
+      {/* Content */}
+      <motion.div 
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+        className={`flex-grow bg-industrial-900/50 backdrop-blur-md border p-8 md:p-16 transition-colors duration-300 relative overflow-hidden shadow-xl shadow-black/20 ${isLit ? 'border-industrial-500' : 'border-industrial-800'}`}
+      >
+        <div className={`absolute top-0 right-0 text-[180px] font-bold font-mono leading-none -mt-12 -mr-12 select-none pointer-events-none hidden md:block transition-colors duration-300 ${isLit ? 'text-industrial-800/40' : 'text-industrial-800/20'}`}>
+          0{index + 1}
+        </div>
+        
+        <div className="relative z-10">
+          <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
+            <h3 className={`text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 ${isLit ? 'text-white' : 'text-industrial-400'}`}>{step.title}</h3>
+            <span className={`inline-block px-4 py-2 bg-industrial-800/80 text-sm font-mono uppercase tracking-widest w-fit border shadow-lg transition-colors duration-300 ${isLit ? 'text-accent-500 border-accent-500/30' : 'text-industrial-500 border-industrial-700/50'}`}>
+              {step.duration}
+            </span>
+          </div>
+          
+          <p className={`text-xl leading-relaxed mb-12 max-w-3xl font-light transition-colors duration-300 ${isLit ? 'text-industrial-300' : 'text-industrial-500'}`}>
+            {step.description}
+          </p>
+
+          <div>
+            <div className={`text-sm font-mono mb-6 uppercase tracking-widest flex items-center gap-4 font-bold transition-colors duration-300 ${isLit ? 'text-industrial-400' : 'text-industrial-600'}`}>
+              <span className={`w-8 h-px transition-colors duration-300 ${isLit ? 'bg-accent-500' : 'bg-industrial-700'}`}></span>
+              Результат этапа
+            </div>
+            <ul className="flex flex-wrap gap-4">
+              {step.deliverables.map((item, i) => (
+                <li key={i} className={`px-5 py-2.5 bg-industrial-800/50 border text-sm font-medium tracking-wide transition-colors duration-300 ${isLit ? 'border-industrial-600 text-industrial-200' : 'border-industrial-700 text-industrial-500'}`}>
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+}
+
 export function Process() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
   return (
     <div className="pt-12 pb-32 relative overflow-hidden">
       {/* Background glow */}
@@ -67,64 +141,19 @@ export function Process() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Vertical Line */}
-          <div className="hidden md:block absolute left-[48px] top-0 bottom-0 w-1 bg-gradient-to-b from-accent-500/50 via-industrial-800 to-transparent" />
+        <div ref={containerRef} className="relative">
+          {/* Background Vertical Line */}
+          <div className="hidden md:block absolute left-[48px] top-0 bottom-0 w-1 bg-industrial-800/50 rounded-full" />
+          
+          {/* Animated Scroll Progress Line */}
+          <motion.div 
+            className="hidden md:block absolute left-[48px] top-0 bottom-0 w-1 bg-gradient-to-b from-accent-500 to-accent-600 origin-top rounded-full shadow-[0_0_15px_rgba(255,77,0,0.5)]"
+            style={{ scaleY: scrollYProgress }}
+          />
 
           <div className="flex flex-col gap-16 md:gap-32">
             {steps.map((step, index) => (
-              <motion.div 
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                className="relative flex flex-col md:flex-row gap-8 md:gap-20 group"
-              >
-                {/* Icon / Number */}
-                <div className="relative z-10 flex items-start md:items-center gap-6 md:w-[100px] shrink-0">
-                  <div className="w-16 h-16 md:w-24 md:h-24 bg-industrial-900 border-4 border-industrial-800 flex items-center justify-center shrink-0 group-hover:border-accent-500/50 group-hover:shadow-[0_0_40px_rgba(255,77,0,0.3)] transition-all duration-500 rounded-full">
-                    <step.icon className="w-8 h-8 md:w-10 md:h-10 text-accent-500 group-hover:scale-110 transition-transform duration-500" />
-                  </div>
-                  <div className="md:hidden text-5xl font-bold text-industrial-800 font-mono tracking-tighter">
-                    0{index + 1}
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="flex-grow bg-industrial-900/50 backdrop-blur-md border border-industrial-800 p-8 md:p-16 hover:border-industrial-600 transition-colors duration-500 relative overflow-hidden shadow-xl shadow-black/20">
-                  <div className="absolute top-0 right-0 text-[180px] font-bold text-industrial-800/20 font-mono leading-none -mt-12 -mr-12 select-none pointer-events-none hidden md:block group-hover:text-industrial-800/40 transition-colors duration-500">
-                    0{index + 1}
-                  </div>
-                  
-                  <div className="relative z-10">
-                    <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
-                      <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">{step.title}</h3>
-                      <span className="inline-block px-4 py-2 bg-industrial-800/80 text-accent-500 text-sm font-mono uppercase tracking-widest w-fit border border-industrial-700/50 shadow-lg">
-                        {step.duration}
-                      </span>
-                    </div>
-                    
-                    <p className="text-industrial-400 text-xl leading-relaxed mb-12 max-w-3xl font-light">
-                      {step.description}
-                    </p>
-
-                    <div>
-                      <div className="text-sm font-mono text-industrial-500 mb-6 uppercase tracking-widest flex items-center gap-4 font-bold">
-                        <span className="w-8 h-px bg-industrial-700"></span>
-                        Результат этапа
-                      </div>
-                      <ul className="flex flex-wrap gap-4">
-                        {step.deliverables.map((item, i) => (
-                          <li key={i} className="px-5 py-2.5 bg-industrial-800/50 border border-industrial-700 text-industrial-300 text-sm font-medium tracking-wide hover:bg-industrial-800 hover:text-white transition-colors duration-300">
-                            {item}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <ProcessStep key={index} step={step} index={index} />
             ))}
           </div>
         </div>

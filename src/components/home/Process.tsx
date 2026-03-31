@@ -1,4 +1,5 @@
-import { motion } from 'motion/react';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'motion/react';
 
 const steps = [
   {
@@ -35,7 +36,48 @@ const steps = [
   }
 ];
 
+function ProcessStep({ step, index }: { step: typeof steps[0], index: number }) {
+  const circleRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: circleRef,
+    offset: ["center center", "end center"]
+  });
+  const [isLit, setIsLit] = useState(false);
+  
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    setIsLit(latest > 0);
+  });
+
+  return (
+    <div className="relative pl-16 md:pl-32 group">
+      {/* Node */}
+      <div ref={circleRef} className={`absolute left-0 md:left-[16px] top-1 w-[48px] h-[48px] rounded-full bg-industrial-900 border-2 flex items-center justify-center z-10 transition-all duration-300 ${isLit ? 'border-accent-500 shadow-[0_0_20px_rgba(255,77,0,0.3)]' : 'border-industrial-600'}`}>
+        <div className={`w-3 h-3 rounded-full transition-colors duration-300 ${isLit ? 'bg-accent-500' : 'bg-industrial-600'}`} />
+      </div>
+      
+      <motion.div
+        initial={{ opacity: 0, x: -30 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <div className={`text-sm font-mono mb-4 tracking-widest transition-colors duration-300 ${isLit ? 'text-accent-500' : 'text-industrial-500'}`}>Этап 0{index + 1}</div>
+        <h3 className={`text-3xl font-bold mb-6 tracking-tight transition-colors duration-300 ${isLit ? 'text-white' : 'text-industrial-400'}`}>{step.title}</h3>
+        <p className={`text-lg leading-relaxed font-light max-w-3xl transition-colors duration-300 ${isLit ? 'text-industrial-300' : 'text-industrial-500'}`}>
+          {step.desc}
+        </p>
+      </motion.div>
+    </div>
+  );
+}
+
 export function Process() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start center", "end center"]
+  });
+
   return (
     <section className="py-32 bg-industrial-800 border-t border-industrial-700 relative overflow-hidden">
       {/* Background Elements */}
@@ -55,31 +97,19 @@ export function Process() {
           </p>
         </div>
 
-        <div className="relative">
-          {/* Vertical Line */}
+        <div ref={containerRef} className="relative">
+          {/* Background Vertical Line */}
           <div className="absolute left-[23px] md:left-[39px] top-0 bottom-0 w-[2px] bg-industrial-700/50" />
+          
+          {/* Animated Scroll Progress Line */}
+          <motion.div 
+            className="absolute left-[23px] md:left-[39px] top-0 bottom-0 w-[2px] bg-gradient-to-b from-accent-500 to-accent-600 origin-top shadow-[0_0_15px_rgba(255,77,0,0.5)]"
+            style={{ scaleY: scrollYProgress }}
+          />
           
           <div className="flex flex-col gap-16 md:gap-24">
             {steps.map((step, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true, margin: "-150px" }}
-                transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                className="relative pl-16 md:pl-32 group"
-              >
-                {/* Node */}
-                <div className="absolute left-0 md:left-[16px] top-1 w-[48px] h-[48px] rounded-full bg-industrial-900 border-2 border-industrial-600 flex items-center justify-center z-10 group-hover:border-accent-500 group-hover:shadow-[0_0_20px_rgba(255,77,0,0.3)] transition-all duration-500">
-                  <div className="w-3 h-3 rounded-full bg-industrial-600 group-hover:bg-accent-500 transition-colors duration-500" />
-                </div>
-                
-                <div className="text-sm font-mono text-accent-500 mb-4 tracking-widest">Этап 0{index + 1}</div>
-                <h3 className="text-3xl font-bold text-white mb-6 tracking-tight">{step.title}</h3>
-                <p className="text-lg text-industrial-400 leading-relaxed font-light max-w-3xl">
-                  {step.desc}
-                </p>
-              </motion.div>
+              <ProcessStep key={index} step={step} index={index} />
             ))}
           </div>
         </div>
