@@ -1,5 +1,7 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
+import { SEO } from '../components/ui/SEO';
+import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 
 const serviceData = {
   'landing': {
@@ -52,14 +54,26 @@ const serviceData = {
 
 export function ServiceDetail() {
   const { id } = useParams<{ id: keyof typeof serviceData }>();
-  const service = id && serviceData[id] ? serviceData[id] : serviceData['corporate'];
+  
+  if (!id || !serviceData[id]) {
+    return <Navigate to="/404" replace />;
+  }
+
+  const service = serviceData[id];
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24">
+      <SEO 
+        title={`${service.title} | Услуги | МАНУФАКТУРА`}
+        description={service.subtitle}
+      />
       <div className="max-w-4xl mx-auto px-6">
-        <Link to="/services" className="inline-flex items-center gap-2 text-sm font-medium text-industrial-400 hover:text-white transition-colors mb-8 md:mb-12">
-          <ArrowLeft className="w-4 h-4" /> Все услуги
-        </Link>
+        <Breadcrumbs 
+          items={[
+            { label: 'Услуги', href: '/services' },
+            { label: service.title }
+          ]} 
+        />
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-tight">
           {service.title}

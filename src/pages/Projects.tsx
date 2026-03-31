@@ -2,43 +2,8 @@ import { useState } from 'react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
-
-const categories = ['Все проекты', 'Металлообработка', 'Спецтехника', 'Оборудование'];
-
-const projects = [
-  {
-    id: 'metal-factory',
-    title: 'Завод металлоконструкций «СтальПром»',
-    category: 'Металлообработка',
-    type: 'Редизайн корпоративного сайта',
-    image: 'https://picsum.photos/seed/metalwork/800/600?grayscale',
-    result: 'Конверсия в заявку выросла на 42%'
-  },
-  {
-    id: 'heavy-machinery',
-    title: 'Производитель спецтехники «ТяжМаш»',
-    category: 'Спецтехника',
-    type: 'Разработка с нуля',
-    image: 'https://picsum.photos/seed/machinery/800/600?grayscale',
-    result: 'Новый каталог на 500+ позиций'
-  },
-  {
-    id: 'industrial-equipment',
-    title: 'Поставщик ЧПУ станков «ТехноВектор»',
-    category: 'Оборудование',
-    type: 'Редизайн лендинга',
-    image: 'https://picsum.photos/seed/cnc/800/600?grayscale',
-    result: 'Снижение стоимости лида в 2 раза'
-  },
-  {
-    id: 'pipe-plant',
-    title: 'Трубный завод «УралТрубоСталь»',
-    category: 'Металлообработка',
-    type: 'Редизайн корпоративного сайта',
-    image: 'https://picsum.photos/seed/pipes/800/600?grayscale',
-    result: 'Полная оцифровка документации'
-  }
-];
+import { SEO } from '../components/ui/SEO';
+import { categories, projects } from '../data/projects';
 
 export function Projects() {
   const [activeCategory, setActiveCategory] = useState('Все проекты');
@@ -49,6 +14,10 @@ export function Projects() {
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
+      <SEO 
+        title="Наши проекты | МАНУФАКТУРА"
+        description="Портфолио сайтов для промышленных компаний и заводов."
+      />
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
 
@@ -99,6 +68,7 @@ export function Projects() {
                   alt={project.title} 
                   className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100 mix-blend-luminosity group-hover:mix-blend-normal"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-industrial-900/20 to-transparent opacity-80 group-hover:opacity-40 transition-opacity duration-500" />
                 

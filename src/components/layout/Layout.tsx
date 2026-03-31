@@ -1,7 +1,9 @@
 import { Outlet, useLocation } from 'react-router-dom';
 import { motion, useScroll, useSpring, AnimatePresence } from 'motion/react';
+import { Toaster } from 'sonner';
 import { Header } from './Header';
 import { Footer } from './Footer';
+import { ScrollToTop } from './ScrollToTop';
 
 export function Layout() {
   const location = useLocation();
@@ -14,6 +16,7 @@ export function Layout() {
 
   return (
     <div className="min-h-screen flex flex-col font-sans bg-industrial-900 text-industrial-100 relative">
+      <ScrollToTop />
       {/* Global Scroll Progress Bar */}
       <motion.div
         className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent-600 to-accent-400 origin-left z-[10000] shadow-[0_0_10px_rgba(255,77,0,0.5)]"
@@ -38,6 +41,7 @@ export function Layout() {
       </AnimatePresence>
       
       <Footer />
+      <Toaster theme="dark" position="bottom-right" />
     </div>
   );
 }

@@ -1,33 +1,7 @@
 import { motion } from 'motion/react';
-import { AppWindow, Globe, Cpu, ArrowRight } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
-const services = [
-  {
-    icon: AppWindow,
-    title: 'Редизайн лендингов',
-    subtitle: 'Для производств и заводов',
-    description: 'Обновляем одностраничные сайты так, чтобы они ясно презентовали компанию, направление, продукт или услугу и с первого экрана создавали ощущение серьёзного бизнеса.',
-    link: '/services/landing',
-    tags: ['UX/UI Дизайн', 'Копирайтинг', 'Верстка']
-  },
-  {
-    icon: Globe,
-    title: 'Корпоративные сайты',
-    subtitle: 'Глубокая переработка',
-    description: 'Перерабатываем устаревшие сайты промышленных компаний: улучшаем структуру, подачу, визуальный уровень и удобство восприятия сложной технической информации.',
-    link: '/services/corporate',
-    tags: ['Аналитика', 'Прототипирование', 'CMS']
-  },
-  {
-    icon: Cpu,
-    title: 'Разработка с нуля',
-    subtitle: 'Комплексные решения',
-    description: 'Создаём сайты для производственных компаний с чистого листа, проектируя масштабируемую архитектуру и закладывая фундамент для будущего роста и SEO.',
-    link: '/services/new',
-    tags: ['Архитектура', 'Frontend', 'Backend']
-  }
-];
+import { services } from '../../data/services';
 
 export function Services() {
   return (
@@ -85,15 +59,6 @@ export function Services() {
                 <p className="text-base text-industrial-400 leading-relaxed font-light mb-8 flex-grow">
                   {service.description}
                 </p>
-                
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-8">
-                  {service.tags.map((tag, i) => (
-                    <span key={i} className="px-2 py-1 bg-industrial-950 border border-industrial-800 text-[10px] font-mono text-industrial-400 uppercase tracking-wider group-hover:border-industrial-700 transition-colors duration-300">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
                 
                 <Link 
                   to={service.link}

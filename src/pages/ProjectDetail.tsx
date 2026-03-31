@@ -1,22 +1,30 @@
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, Navigate } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { SEO } from '../components/ui/SEO';
+import { Breadcrumbs } from '../components/ui/Breadcrumbs';
 import { BeforeAfterSlider } from '../components/ui/BeforeAfterSlider';
+import { projects } from '../data/projects';
 
 export function ProjectDetail() {
   const { id } = useParams();
+  
+  // Ищем проект по ID
+  const baseProject = projects.find(p => p.id === id);
 
-  // В реальном проекте данные будут загружаться по ID. Здесь используем мок-данные.
+  if (!baseProject) {
+    return <Navigate to="/404" replace />;
+  }
+
+  // Дополняем базовые данные проекта детальной информацией (в реальном проекте это приходило бы с бэкенда)
   const project = {
-    title: 'Завод металлоконструкций «СтальПром»',
-    category: 'Металлообработка',
-    type: 'Редизайн корпоративного сайта',
+    ...baseProject,
     duration: '45 дней',
     beforeImage: 'https://picsum.photos/seed/old-site/1200/800?blur=2&grayscale',
-    afterImage: 'https://picsum.photos/seed/new-site/1200/800',
-    task: 'Старый сайт был сделан в 2012 году. Он не адаптировался под мобильные устройства, каталог продукции был запутанным, а фотографии производства выглядели некачественно. Из-за этого компания теряла крупных B2B-заказчиков, которые оценивали надежность подрядчика по его сайту.',
-    solution: 'Мы полностью переработали структуру: вынесли ключевые производственные мощности на первый экран, оцифровали каталог из 300+ позиций в удобные таблицы с фильтрами, и добавили блок с реализованными объектами для социального доказательства.',
+    afterImage: baseProject.image,
+    task: 'Старый сайт не адаптировался под мобильные устройства, каталог продукции был запутанным, а фотографии производства выглядели некачественно. Из-за этого компания теряла крупных B2B-заказчиков, которые оценивали надежность подрядчика по его сайту.',
+    solution: 'Мы полностью переработали структуру: вынесли ключевые производственные мощности на первый экран, оцифровали каталог в удобные таблицы с фильтрами, и добавили блок с реализованными объектами для социального доказательства.',
     results: [
-      'Конверсия из посетителя в заявку выросла на 42%',
+      baseProject.result,
       'Время нахождения на сайте увеличилось в 2.5 раза',
       'Снизилась нагрузка на менеджеров (клиенты сами находят нужные ГОСТы в каталоге)'
     ]
@@ -24,11 +32,18 @@ export function ProjectDetail() {
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24">
+      <SEO 
+        title={`${project.title} | Проекты | МАНУФАКТУРА`}
+        description={`Кейс: ${project.title}. ${project.type} в сфере ${project.category}.`}
+        image={project.image}
+      />
       <div className="max-w-7xl mx-auto px-6">
-        {/* Back Link */}
-        <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-medium text-industrial-400 hover:text-white transition-colors mb-12">
-          <ArrowLeft className="w-4 h-4" /> Вернуться к проектам
-        </Link>
+        <Breadcrumbs 
+          items={[
+            { label: 'Проекты', href: '/projects' },
+            { label: project.title }
+          ]} 
+        />
 
         {/* Header */}
         <div className="mb-12 md:mb-16">

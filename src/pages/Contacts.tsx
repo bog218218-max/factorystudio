@@ -1,17 +1,81 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Mail, Phone, MapPin, Send, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, Loader2 } from 'lucide-react';
+import { SEO } from '../components/ui/SEO';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import * as z from 'zod';
+import { Link } from 'react-router-dom';
+import { toast } from 'sonner';
+
+const contactSchema = z.object({
+  name: z.string()
+    .min(2, 'Имя должно содержать минимум 2 символа')
+    .max(50, 'Имя не должно превышать 50 символов')
+    .regex(/^[a-zA-Zа-яА-ЯёЁ\s\-]+$/, 'Имя может содержать только буквы'),
+  company: z.string()
+    .max(100, 'Слишком длинное название')
+    .optional()
+    .refine(val => !val || val.trim().length >= 3, 'Минимум 3 символа'),
+  contact: z.string()
+    .min(1, 'Обязательное поле')
+    .refine(
+      (val) => {
+        const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+        // Проверяем, что это похоже на телефон (минимум 10 цифр, допускаются +, скобки, пробелы, дефисы)
+        const digitsOnly = val.replace(/\D/g, '');
+        const isPhone = /^\+?[\d\s\-\(\)]+$/.test(val) && digitsOnly.length >= 10 && digitsOnly.length <= 15;
+        return isEmail || isPhone;
+      },
+      'Введите корректный email (например, name@mail.ru) или телефон (от 10 цифр)'
+    ),
+  message: z.string()
+    .max(1000, 'Сообщение слишком длинное')
+    .optional()
+    .refine(val => !val || val.trim().length >= 10, 'Опишите задачу подробнее (минимум 10 символов)'),
+});
+
+type ContactFormValues = z.infer<typeof contactSchema>;
 
 export function Contacts() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitted(true);
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+  });
+
+  const onSubmit = async (data: ContactFormValues) => {
+    setIsPending(true);
+    
+    try {
+      // Имитация отправки формы
+      console.log('Form data:', data);
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      toast.success('Заявка успешно отправлена!', {
+        description: 'Мы свяжемся с вами в ближайшее время.',
+      });
+      reset();
+    } catch (error) {
+      toast.error('Произошла ошибка', {
+        description: 'Пожалуйста, попробуйте позже или свяжитесь с нами по телефону.',
+      });
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 relative">
+      <SEO 
+        title="Контакты | МАНУФАКТУРА"
+        description="Свяжитесь с нами для обсуждения вашего проекта."
+      />
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10" />
 
@@ -107,42 +171,28 @@ export function Contacts() {
 
           {/* Form */}
           <div className="lg:col-span-7">
-            {isSubmitted ? (
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-industrial-900/50 backdrop-blur-md border border-industrial-800 p-16 text-center h-full flex flex-col items-center justify-center shadow-2xl shadow-black/50"
-              >
-                <div className="w-24 h-24 bg-industrial-800 border border-industrial-700 rounded-full flex items-center justify-center mb-8 shadow-[0_0_40px_rgba(255,77,0,0.2)]">
-                  <CheckCircle2 className="w-12 h-12 text-accent-500" />
-                </div>
-                <h3 className="text-4xl font-bold text-white mb-6 tracking-tight uppercase">Заявка принята</h3>
-                <p className="text-industrial-400 text-xl font-light max-w-md mx-auto leading-relaxed">
-                  Спасибо за обращение. Мы изучим информацию и свяжемся с вами в ближайшее время для обсуждения деталей.
-                </p>
-              </motion.div>
-            ) : (
-              <motion.form 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                onSubmit={handleSubmit} 
-                className="bg-industrial-900/50 backdrop-blur-md border border-industrial-800 p-10 md:p-16 flex flex-col gap-8 shadow-2xl shadow-black/50"
-              >
-                <div>
-                  <h3 className="text-3xl font-bold text-white mb-4 tracking-tight uppercase">Оставить заявку</h3>
-                  <p className="text-industrial-400 text-lg font-light">Заполните форму, и мы подготовим предметный разговор.</p>
-                </div>
+            <motion.form 
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              onSubmit={handleSubmit(onSubmit)} 
+              className="bg-industrial-900/50 backdrop-blur-md border border-industrial-800 p-10 md:p-16 flex flex-col gap-8 shadow-2xl shadow-black/50"
+            >
+              <div>
+                <h3 className="text-3xl font-bold text-white mb-4 tracking-tight uppercase">Оставить заявку</h3>
+                <p className="text-industrial-400 text-lg font-light">Заполните форму, и мы подготовим предметный разговор.</p>
+              </div>
 
                 <div className="flex flex-col gap-3">
                   <label htmlFor="name" className="text-sm font-mono text-industrial-500 uppercase tracking-widest">Ваше имя</label>
                   <input 
                     type="text" 
                     id="name" 
-                    required
-                    className="bg-industrial-800/50 border border-industrial-700 text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600"
+                    {...register('name')}
+                    className={`bg-industrial-800/50 border ${errors.name ? 'border-red-500' : 'border-industrial-700'} text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600`}
                     placeholder="Иван Иванов"
                   />
+                  {errors.name && <span className="text-red-500 text-sm mt-1">{errors.name.message}</span>}
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -150,9 +200,11 @@ export function Contacts() {
                   <input 
                     type="text" 
                     id="company" 
-                    className="bg-industrial-800/50 border border-industrial-700 text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600"
+                    {...register('company')}
+                    className={`bg-industrial-800/50 border ${errors.company ? 'border-red-500' : 'border-industrial-700'} text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600`}
                     placeholder="zavod.ru"
                   />
+                  {errors.company && <span className="text-red-500 text-sm mt-1">{errors.company.message}</span>}
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -160,10 +212,11 @@ export function Contacts() {
                   <input 
                     type="text" 
                     id="contact" 
-                    required
-                    className="bg-industrial-800/50 border border-industrial-700 text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600"
+                    {...register('contact')}
+                    className={`bg-industrial-800/50 border ${errors.contact ? 'border-red-500' : 'border-industrial-700'} text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 placeholder:text-industrial-600`}
                     placeholder="+7 (999) 000-00-00"
                   />
+                  {errors.contact && <span className="text-red-500 text-sm mt-1">{errors.contact.message}</span>}
                 </div>
 
                 <div className="flex flex-col gap-3">
@@ -171,27 +224,33 @@ export function Contacts() {
                   <textarea 
                     id="message" 
                     rows={4}
-                    className="bg-industrial-800/50 border border-industrial-700 text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 resize-none placeholder:text-industrial-600"
+                    {...register('message')}
+                    className={`bg-industrial-800/50 border ${errors.message ? 'border-red-500' : 'border-industrial-700'} text-white px-6 py-4 text-lg focus:outline-none focus:border-accent-500 focus:bg-industrial-800 transition-all duration-300 resize-none placeholder:text-industrial-600`}
                     placeholder="Нужно обновить корпоративный сайт..."
                   />
+                  {errors.message && <span className="text-red-500 text-sm mt-1">{errors.message.message}</span>}
                 </div>
 
                 <div className="pt-4">
                   <button 
                     type="submit"
-                    className="w-full group relative px-8 py-5 bg-accent-500 text-white text-xl font-semibold overflow-hidden flex items-center justify-center gap-3 shadow-[0_0_40px_-10px_rgba(255,77,0,0.4)] hover:shadow-[0_0_60px_-15px_rgba(255,77,0,0.6)] transition-shadow"
+                    disabled={isPending}
+                    className="w-full group relative px-8 py-5 bg-accent-500 text-white text-xl font-semibold overflow-hidden flex items-center justify-center gap-3 shadow-[0_0_40px_-10px_rgba(255,77,0,0.4)] hover:shadow-[0_0_60px_-15px_rgba(255,77,0,0.6)] transition-shadow disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     <div className="absolute inset-0 w-full h-full bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out" />
                     <span className="relative z-10 flex items-center gap-3 uppercase tracking-wider">
-                      Отправить заявку <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+                      {isPending ? (
+                        <>Отправка... <Loader2 className="w-6 h-6 animate-spin" /></>
+                      ) : (
+                        <>Отправить заявку <Send className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" /></>
+                      )}
                     </span>
                   </button>
                   <p className="text-sm text-industrial-500 text-center mt-6 font-light">
-                    Нажимая кнопку, вы соглашаетесь с <a href="#" className="underline hover:text-industrial-300 transition-colors">политикой конфиденциальности</a>.
+                    Нажимая кнопку, вы соглашаетесь с <Link to="/privacy" className="underline hover:text-industrial-300 transition-colors">политикой конфиденциальности</Link>.
                   </p>
                 </div>
               </motion.form>
-            )}
           </div>
         </div>
       </div>

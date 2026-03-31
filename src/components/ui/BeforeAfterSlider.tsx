@@ -17,6 +17,7 @@ export function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAfterSlider
         alt="После редизайна" 
         className="absolute inset-0 w-full h-full object-cover"
         referrerPolicy="no-referrer"
+        loading="lazy"
       />
       
       {/* Before Image (Foreground, clipped) */}
@@ -26,6 +27,7 @@ export function BeforeAfterSlider({ beforeImage, afterImage }: BeforeAfterSlider
         className="absolute inset-0 w-full h-full object-cover grayscale opacity-80"
         style={{ clipPath: `polygon(0 0, ${sliderPos}% 0, ${sliderPos}% 100%, 0 100%)` }}
         referrerPolicy="no-referrer"
+        loading="lazy"
       />
 
       {/* Slider Handle Line */}

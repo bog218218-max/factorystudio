@@ -1,5 +1,6 @@
 import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
+import { SEO } from '../components/ui/SEO';
 
 const team = [
   { role: 'Менеджер проекта', desc: 'Ведёт проект целиком: собирает задачи, фиксирует договорённости, держит график и остаётся вашей основной точкой контакта.' },
@@ -13,6 +14,10 @@ const team = [
 export function About() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
+      <SEO 
+        title="О студии | МАНУФАКТУРА"
+        description="Студия с фокусом на промышленность и B2B."
+      />
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
 
@@ -29,7 +34,7 @@ export function About() {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">промышленность</span>
           </h1>
           <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
-            Мы не делаем сайты для барбершопов, инфобизнеса или крипто-стартапов. Наша специализация — заводы, производственные предприятия и суровый B2B. Мы знаем, как упаковать сложный продукт так, чтобы он вызывал доверие у закупщиков и партнеров.
+            Мы не делаем сайты для барбершопов, инфобизнеса или крипто-стартапов. Наша специализация — заводы, производственные предприятия и B2B. Мы знаем, как упаковать сложный продукт так, чтобы он вызывал доверие у закупщиков и партнеров.
           </p>
         </div>
 
@@ -41,6 +46,7 @@ export function About() {
               alt="Рабочий процесс" 
               className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity group-hover:scale-105 transition-transform duration-1000 group-hover:opacity-60"
               referrerPolicy="no-referrer"
+              loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-industrial-900/50 to-transparent" />
             <div className="absolute bottom-12 left-12 right-12">

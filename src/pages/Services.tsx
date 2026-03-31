@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, AppWindow, Globe, Cpu, CheckCircle2 } from 'lucide-react';
+import { SEO } from '../components/ui/SEO';
 
 const services = [
   {
@@ -36,6 +37,10 @@ const services = [
 export function Services() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden bg-industrial-950">
+      <SEO 
+        title="Услуги и форматы работы | МАНУФАКТУРА"
+        description="Разработка и редизайн сайтов для промышленных компаний."
+      />
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
       <div className="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-[0.02] pointer-events-none" />

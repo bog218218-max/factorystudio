@@ -6,11 +6,11 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="flex items-center gap-3 mb-6">
+            <Link to="/" className="flex items-center gap-4 mb-6">
               <div className="w-10 h-10 bg-accent-500 flex items-center justify-center text-white font-mono font-bold text-sm">
-                MF
+                SV
               </div>
-              <span className="font-bold text-xl tracking-tight text-white">МАНУФАКТУРА</span>
+              <span className="font-bold text-xl tracking-wide text-white">СТУДИЯ-ВЕКТОР</span>
             </Link>
             <p className="text-industrial-400 max-w-sm mb-8 leading-relaxed">
               Помогаем заводам, производствам и промышленным компаниям обновить устаревшие сайты и привести их в соответствие с реальным уровнем бизнеса.
@@ -39,7 +39,7 @@ export function Footer() {
         </div>
 
         <div className="border-t border-industrial-800 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-industrial-500">
-          <p>© {new Date().getFullYear()} Студия «Мануфактура». Все права защищены.</p>
+          <p>© {new Date().getFullYear()} «Студия-вектор». Все права защищены.</p>
           <Link to="/privacy" className="hover:text-white transition-colors">Политика конфиденциальности</Link>
         </div>
       </div>

@@ -6,62 +6,54 @@ const steps = [
   {
     icon: Search,
     title: 'Погружение в бизнес',
-    duration: '1-2 недели',
     description: 'Изучаем вашу компанию, текущее состояние сайта, специфику продукта, конкурентов и логику, по которой клиент выбирает подрядчика или поставщика. На этом этапе определяем, что именно мешает нынешнему сайту работать сильнее.',
-    deliverables: ['Бриф', 'Анализ конкурентов', 'Стратегия']
+    deliverables: ['Заполненный бриф', 'Сводка по конкурентам', 'Первичное ТЗ']
   },
   {
     icon: Network,
     title: 'Структура и логика',
-    duration: '1-2 недели',
     description: 'Проектируем будущую структуру сайта: какие разделы нужны, в каком порядке подавать информацию, как показать преимущества, кейсы, направления, процессы и точки контакта. Продумываем путь посетителя от первого экрана до заявки.',
-    deliverables: ['Карта сайта', 'Wireframes', 'User Flow']
+    deliverables: ['Карта сайта (Sitemap)', 'Ч/б прототипы страниц', 'Схема навигации']
   },
   {
     icon: FileText,
     title: 'Смыслы и тексты',
-    duration: '2-3 недели',
     description: 'Переписываем подачу так, чтобы сайт говорил с клиентом понятным языком: без перегруза, без сухой канцелярщины и без пустых обещаний. Помогаем ясно объяснить, чем вы занимаетесь, в чём ваша сила и почему вам можно доверять.',
-    deliverables: ['Копирайтинг', 'УТП', 'Слоган']
+    deliverables: ['Готовые тексты страниц', 'Сформулированные офферы', 'SEO-метатеги']
   },
   {
     icon: Palette,
     title: 'Дизайн',
-    duration: '3-4 недели',
     description: 'Создаём новый визуальный стиль сайта под задачи компании. Делаем дизайн современным, строгим и собранным, чтобы он усиливал восприятие бизнеса, а не отвлекал от сути.',
-    deliverables: ['UI-кит', 'Дизайн-макеты', 'Адаптив']
+    deliverables: ['Дизайн-концепция', 'Макеты всех страниц', 'UI-кит (набор элементов)']
   },
   {
     icon: Code2,
     title: 'Разработка',
-    duration: '4-6 недель',
     description: 'Аккуратно собираем сайт, адаптируем под мобильные устройства, следим за скоростью загрузки и качеством реализации. На выходе вы получаете не только дизайн в макете, а готовый рабочий инструмент.',
-    deliverables: ['Верстка', 'Frontend', 'Backend/CMS']
+    deliverables: ['Адаптивная верстка', 'Настроенная CMS', 'Рабочий функционал']
   },
   {
     icon: Blocks,
     title: 'Интеграции и формы',
-    duration: '1-2 недели',
-    description: 'Подключаем формы заявок, аналитику, мессенджеры и, если нужно, CRM или другие сервисы, чтобы сайт был встроен в ваши бизнес-процессы, а не существовал отдельно от них.',
-    deliverables: ['CRM', 'Аналитика', 'API']
+    description: 'Подключаем формы заявок, аналитику, мессенджеры и, если нужно, CRM или другие сервисы, чтобы сайт был встроен в ваши бизнес-процессы.',
+    deliverables: ['Работающие формы заявок', 'Подключенная веб-аналитика', 'Связка с CRM']
   },
   {
     icon: CheckSquare,
     title: 'Проверка перед запуском',
-    duration: '1 неделя',
     description: 'Тестируем сайт на разных устройствах и в популярных браузерах, проверяем формы, адаптивность, кликабельность и ключевые сценарии, чтобы исключить технические ошибки до релиза.',
-    deliverables: ['QA-отчет', 'Багфикс', 'Оптимизация']
+    deliverables: ['Чек-лист тестирования', 'Отчет об устранении багов', 'Финальная сборка']
   },
   {
     icon: Rocket,
     title: 'Запуск',
-    duration: '1-2 дня',
     description: 'Публикуем сайт, подключаем домен и SSL, проверяем финальную работу и передаём вам доступы к готовому проекту.',
-    deliverables: ['Релиз', 'Доступы', 'Инструкция']
+    deliverables: ['Сайт на боевом домене', 'Доступы от CMS и хостинга', 'Инструкция по управлению']
   }
 ];
 
-function ProcessStep({ step, index }: { step: typeof steps[0], index: number }) {
+function ProcessStep({ step, index }: { key?: number; step: any; index: number }) {
   const circleRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: circleRef,
@@ -88,9 +80,6 @@ function ProcessStep({ step, index }: { step: typeof steps[0], index: number }) 
       >
         <div className="flex items-center gap-4 mb-4">
           <div className={`text-sm font-mono tracking-widest transition-colors duration-300 ${isLit ? 'text-accent-500' : 'text-industrial-500'}`}>Этап 0{index + 1}</div>
-          <span className={`px-3 py-1 text-xs font-mono uppercase tracking-widest border transition-colors duration-300 ${isLit ? 'border-accent-500/30 text-accent-500 bg-accent-500/5' : 'border-industrial-700 text-industrial-500 bg-industrial-800/50'}`}>
-            {step.duration}
-          </span>
         </div>
 
         <h3 className={`text-2xl sm:text-3xl font-bold mb-4 md:mb-6 tracking-tight transition-colors duration-300 flex items-center gap-4 ${isLit ? 'text-white' : 'text-industrial-400'}`}>
