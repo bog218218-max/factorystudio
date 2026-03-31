@@ -5,73 +5,126 @@ import { Link } from 'react-router-dom';
 const services = [
   {
     icon: LayoutTemplate,
-    title: 'Редизайн лендингов для производств',
+    title: 'Редизайн лендингов',
+    subtitle: 'Для производств и заводов',
     description: 'Обновляем одностраничные сайты так, чтобы они ясно презентовали компанию, направление, продукт или услугу и с первого экрана создавали ощущение серьёзного бизнеса.',
-    link: '/services/landing'
+    link: '/services/landing',
+    tags: ['UX/UI Дизайн', 'Копирайтинг', 'Верстка']
   },
   {
     icon: Monitor,
-    title: 'Редизайн корпоративных сайтов',
-    description: 'Перерабатываем устаревшие сайты заводов, промышленных компаний и производственных предприятий: улучшаем структуру, подачу, визуальный уровень и удобство восприятия.',
-    link: '/services/corporate'
+    title: 'Корпоративные сайты',
+    subtitle: 'Глубокая переработка',
+    description: 'Перерабатываем устаревшие сайты промышленных компаний: улучшаем структуру, подачу, визуальный уровень и удобство восприятия сложной технической информации.',
+    link: '/services/corporate',
+    tags: ['Аналитика', 'Прототипирование', 'CMS']
   },
   {
     icon: Code2,
-    title: 'Разработка сайтов с нуля',
-    description: 'Создаём сайты для производственных компаний с чистого листа, если текущий ресурс отсутствует или его проще сделать заново, чем дорабатывать.',
-    link: '/services/new'
+    title: 'Разработка с нуля',
+    subtitle: 'Комплексные решения',
+    description: 'Создаём сайты для производственных компаний с чистого листа, проектируя масштабируемую архитектуру и закладывая фундамент для будущего роста и SEO.',
+    link: '/services/new',
+    tags: ['Архитектура', 'Frontend', 'Backend']
   }
 ];
 
 export function Services() {
   return (
-    <section className="py-32 bg-industrial-900 border-t border-industrial-800 relative overflow-hidden">
+    <section className="py-24 md:py-40 bg-industrial-950 border-t border-industrial-900 relative overflow-hidden">
       {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[120px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-accent-500/5 rounded-full blur-[120px] pointer-events-none -z-10 translate-x-1/3" />
       
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-24 max-w-4xl">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-800/50 border border-industrial-700/50 backdrop-blur-md text-industrial-300 text-xs font-mono mb-8 uppercase tracking-widest shadow-xl shadow-black/20">
-            <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
-            Услуги
-          </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
-            Что мы <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">делаем</span>
-          </h2>
-          <p className="text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
-            Решаем задачи любого масштаба — от посадочной страницы под конкретный станок до многостраничного портала завода.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.15, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative bg-industrial-800/30 backdrop-blur-sm border border-industrial-700/50 p-10 hover:bg-industrial-800/80 hover:border-accent-500/50 transition-all duration-500 flex flex-col h-full overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-accent-500/10 rounded-full blur-[40px] -translate-y-1/2 translate-x-1/2 group-hover:bg-accent-500/20 transition-colors duration-500" />
-              
-              <div className="w-16 h-16 bg-industrial-900/80 border border-industrial-700 flex items-center justify-center mb-10 group-hover:border-accent-500/50 group-hover:shadow-[0_0_30px_rgba(255,77,0,0.2)] transition-all duration-500 relative z-10">
-                <service.icon className="w-8 h-8 text-industrial-400 group-hover:text-accent-500 group-hover:scale-110 transition-all duration-500" />
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-24">
+          
+          {/* Sticky Left Column */}
+          <div className="lg:w-1/3 relative z-10">
+            <div className="sticky top-32">
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-900 border border-industrial-800 text-industrial-400 text-xs font-mono mb-8 uppercase tracking-widest">
+                <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
+                Наши компетенции
               </div>
-              
-              <h3 className="text-2xl font-bold text-white mb-6 tracking-tight relative z-10">{service.title}</h3>
-              <p className="text-lg text-industrial-400 mb-10 flex-grow leading-relaxed font-light relative z-10">
-                {service.description}
+              <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+                Что мы <br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">делаем</span>
+              </h2>
+              <p className="text-xl text-industrial-400 leading-relaxed font-light mb-12">
+                Решаем задачи любого масштаба — от посадочной страницы под конкретный станок до многостраничного портала завода.
               </p>
               
-              <Link 
-                to={service.link}
-                className="inline-flex items-center gap-3 text-base font-semibold text-white group-hover:text-accent-400 transition-colors mt-auto relative z-10 uppercase tracking-wider"
+              <div className="hidden lg:flex items-center gap-4 text-industrial-500 font-mono text-sm uppercase tracking-widest">
+                <span className="w-12 h-px bg-industrial-800" />
+                Скролльте вниз
+              </div>
+            </div>
+          </div>
+
+          {/* Scrollable Right Column */}
+          <div className="lg:w-2/3 flex flex-col gap-6 md:gap-8 relative z-10">
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, delay: index * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="group relative bg-industrial-900/40 backdrop-blur-md border border-industrial-800 p-8 md:p-12 hover:bg-industrial-900/80 hover:border-industrial-600 transition-all duration-500 overflow-hidden flex flex-col"
               >
-                Подробнее <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform duration-300" />
-              </Link>
-            </motion.div>
-          ))}
+                {/* Hover Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-accent-500/0 via-accent-500/0 to-accent-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+                
+                {/* Large Background Number */}
+                <div className="absolute -right-4 -bottom-8 text-[180px] font-bold font-mono text-industrial-800/30 group-hover:text-industrial-700/30 transition-colors duration-500 pointer-events-none select-none leading-none">
+                  0{index + 1}
+                </div>
+
+                <div className="flex flex-col md:flex-row gap-8 md:gap-12 relative z-10">
+                  {/* Icon Container */}
+                  <div className="shrink-0">
+                    <div className="w-20 h-20 bg-industrial-950 border border-industrial-800 flex items-center justify-center group-hover:border-accent-500/50 group-hover:shadow-[0_0_30px_rgba(255,77,0,0.2)] transition-all duration-500">
+                      <service.icon className="w-10 h-10 text-industrial-500 group-hover:text-accent-500 group-hover:scale-110 transition-all duration-500" />
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex-grow flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="text-accent-500 font-mono text-sm font-bold tracking-widest">0{index + 1} //</span>
+                      <span className="text-industrial-500 font-mono text-sm uppercase tracking-widest">{service.subtitle}</span>
+                    </div>
+                    
+                    <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-6 group-hover:text-accent-50 transition-colors duration-300">
+                      {service.title}
+                    </h3>
+                    
+                    <p className="text-lg text-industrial-400 leading-relaxed font-light mb-8">
+                      {service.description}
+                    </p>
+                    
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-3 mb-10">
+                      {service.tags.map((tag, i) => (
+                        <span key={i} className="px-3 py-1.5 bg-industrial-950 border border-industrial-800 text-xs font-mono text-industrial-400 uppercase tracking-wider group-hover:border-industrial-700 transition-colors duration-300">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    
+                    <Link 
+                      to={service.link}
+                      className="mt-auto inline-flex items-center gap-4 text-sm font-mono uppercase tracking-widest text-white group-hover:text-accent-400 transition-colors w-fit"
+                    >
+                      <span className="relative overflow-hidden flex items-center justify-center w-12 h-12 rounded-full border border-industrial-700 group-hover:border-accent-500/50 bg-industrial-900 transition-colors duration-300">
+                        <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+                      </span>
+                      Подробнее об услуге
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
