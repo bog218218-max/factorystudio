@@ -11,21 +11,21 @@ export function Contacts() {
   };
 
   return (
-    <div className="pt-12 pb-24 relative">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-24 relative">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-20 max-w-4xl">
+        <div className="mb-16 md:mb-20 max-w-4xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-800/50 border border-industrial-700/50 backdrop-blur-md text-industrial-300 text-xs font-mono mb-8 uppercase tracking-widest shadow-xl shadow-black/20">
             <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
             Контакты
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
             Обсудить <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">проект</span>
           </h1>
-          <p className="text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
+          <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
             Оставьте заявку, и мы свяжемся с вами в течение рабочего дня. Проведем аудит текущего сайта и предложим план действий.
           </p>
         </div>

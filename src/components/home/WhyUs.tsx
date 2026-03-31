@@ -35,7 +35,7 @@ const reasons = [
 
 export function WhyUs() {
   return (
-    <section className="py-32 bg-industrial-900 border-t border-industrial-800 relative">
+    <section className="py-16 md:py-32 bg-industrial-900 border-t border-industrial-800 relative">
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] -z-10 translate-x-1/3 -translate-y-1/3" />
@@ -51,10 +51,10 @@ export function WhyUs() {
                 <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
                 Преимущества
               </div>
-              <h2 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
                 Почему <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">мы</span>
               </h2>
-              <p className="text-xl text-industrial-400 leading-relaxed font-light">
+              <p className="text-lg sm:text-xl text-industrial-400 leading-relaxed font-light">
                 Мы делаем сайты для бизнеса, а не для конкурсов дизайна. Наш фокус — конверсия, статус и доверие ваших B2B-клиентов.
               </p>
             </div>

@@ -55,39 +55,39 @@ export function ServiceDetail() {
   const service = id && serviceData[id] ? serviceData[id] : serviceData['corporate'];
 
   return (
-    <div className="pt-12 pb-24">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="max-w-4xl mx-auto px-6">
-        <Link to="/services" className="inline-flex items-center gap-2 text-sm font-medium text-industrial-400 hover:text-white transition-colors mb-12">
+        <Link to="/services" className="inline-flex items-center gap-2 text-sm font-medium text-industrial-400 hover:text-white transition-colors mb-8 md:mb-12">
           <ArrowLeft className="w-4 h-4" /> Все услуги
         </Link>
 
-        <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight leading-tight">
           {service.title}
         </h1>
         
-        <p className="text-xl text-industrial-300 mb-6 leading-relaxed font-medium">
+        <p className="text-lg sm:text-xl text-industrial-300 mb-6 leading-relaxed font-medium">
           {service.subtitle}
         </p>
         
-        <p className="text-lg text-industrial-400 mb-12 leading-relaxed">
+        <p className="text-base sm:text-lg text-industrial-400 mb-8 md:mb-12 leading-relaxed">
           {service.description}
         </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-16">
-          <div className="bg-industrial-800 border border-industrial-700 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 md:mb-16">
+          <div className="bg-industrial-800 border border-industrial-700 p-5 sm:p-6">
             <div className="text-sm font-mono text-industrial-500 mb-2 uppercase tracking-wider">Стоимость</div>
             <div className="text-3xl font-bold text-white">{service.price}</div>
             <div className="text-sm text-industrial-400 mt-2">Точная смета после аудита</div>
           </div>
-          <div className="bg-industrial-800 border border-industrial-700 p-6">
+          <div className="bg-industrial-800 border border-industrial-700 p-5 sm:p-6">
             <div className="text-sm font-mono text-industrial-500 mb-2 uppercase tracking-wider">Сроки</div>
             <div className="text-3xl font-bold text-white">{service.time}</div>
             <div className="text-sm text-industrial-400 mt-2">С поэтапной сдачей работ</div>
           </div>
         </div>
 
-        <h2 className="text-2xl font-bold text-white mb-8">Что входит в работу:</h2>
-        <div className="bg-industrial-900 border border-industrial-800 p-8 mb-16">
+        <h2 className="text-2xl font-bold text-white mb-6 md:mb-8">Что входит в работу:</h2>
+        <div className="bg-industrial-900 border border-industrial-800 p-6 sm:p-8 mb-12 md:mb-16">
           <ul className="flex flex-col gap-4">
             {service.includes.map((item, index) => (
               <li key={index} className="flex items-start gap-4">
@@ -98,7 +98,7 @@ export function ServiceDetail() {
           </ul>
         </div>
 
-        <div className="bg-industrial-800 border-l-4 border-accent-500 p-8 flex flex-col md:flex-row items-center justify-between gap-8">
+        <div className="bg-industrial-800 border-l-4 border-accent-500 p-6 sm:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 md:gap-8">
           <div>
             <h3 className="text-xl font-bold text-white mb-2">Готовы обсудить вашу задачу?</h3>
             <p className="text-industrial-400">

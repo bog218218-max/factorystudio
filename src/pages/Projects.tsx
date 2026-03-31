@@ -48,31 +48,31 @@ export function Projects() {
     : projects.filter(p => p.category === activeCategory);
 
   return (
-    <div className="pt-12 pb-32 relative overflow-hidden">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-24 max-w-4xl">
+        <div className="mb-16 md:mb-24 max-w-4xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-800/50 border border-industrial-700/50 backdrop-blur-md text-industrial-300 text-xs font-mono mb-8 uppercase tracking-widest shadow-xl shadow-black/20">
             <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
             Портфолио
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
             Наши <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">проекты</span>
           </h1>
-          <p className="text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
+          <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
             Примеры сайтов, где визуальная подача, структура и смыслы работают на доверие, статус компании и понятную презентацию производственных возможностей.
           </p>
         </div>
 
         {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-20">
+        <div className="flex flex-wrap gap-2 md:gap-4 mb-12 md:mb-20">
           {categories.map((category) => (
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-8 py-4 text-sm font-semibold transition-all duration-500 uppercase tracking-widest border ${
+              className={`px-4 py-2 md:px-8 md:py-4 text-xs md:text-sm font-semibold transition-all duration-500 uppercase tracking-widest border ${
                 activeCategory === category 
                   ? 'bg-white text-industrial-900 border-white shadow-[0_0_30px_rgba(255,255,255,0.2)]' 
                   : 'bg-industrial-900/50 text-industrial-400 border-industrial-800 hover:bg-industrial-800 hover:text-white hover:border-industrial-600 backdrop-blur-sm'
@@ -84,7 +84,7 @@ export function Projects() {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 md:gap-x-12 gap-y-12 md:gap-y-20">
           {filteredProjects.map((project, index) => (
             <motion.div
               key={project.id}
@@ -116,11 +116,11 @@ export function Projects() {
                 <span className="text-sm text-industrial-500 font-mono uppercase tracking-wider">{project.type}</span>
               </div>
               
-              <h3 className="text-3xl md:text-4xl font-bold text-white mb-6 group-hover:text-accent-500 transition-colors duration-500 tracking-tight leading-snug">
+              <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-4 md:mb-6 group-hover:text-accent-500 transition-colors duration-500 tracking-tight leading-snug">
                 <Link to={`/projects/${project.id}`}>{project.title}</Link>
               </h3>
               
-              <p className="text-industrial-400 font-light text-xl leading-relaxed">
+              <p className="text-industrial-400 font-light text-lg sm:text-xl leading-relaxed">
                 <strong className="text-industrial-200 font-medium mr-2">Результат:</strong> {project.result}
               </p>
             </motion.div>

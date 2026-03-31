@@ -23,7 +23,7 @@ export function ProjectDetail() {
   };
 
   return (
-    <div className="pt-12 pb-24">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-24">
       <div className="max-w-7xl mx-auto px-6">
         {/* Back Link */}
         <Link to="/projects" className="inline-flex items-center gap-2 text-sm font-medium text-industrial-400 hover:text-white transition-colors mb-12">
@@ -31,7 +31,7 @@ export function ProjectDetail() {
         </Link>
 
         {/* Header */}
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <div className="flex items-center gap-3 mb-6">
             <span className="px-3 py-1 bg-industrial-800 border border-industrial-700 text-xs font-mono text-accent-500 uppercase tracking-wider">
               {project.category}
@@ -40,13 +40,13 @@ export function ProjectDetail() {
             <span className="w-1 h-1 rounded-full bg-industrial-600" />
             <span className="text-sm text-industrial-400">Срок: {project.duration}</span>
           </div>
-          <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight max-w-4xl">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold text-white tracking-tight max-w-4xl">
             {project.title}
           </h1>
         </div>
 
         {/* Before / After Interactive Block */}
-        <div className="mb-24">
+        <div className="mb-16 md:mb-24">
           <h2 className="text-2xl font-bold text-white mb-8">Визуальное сравнение (До / После)</h2>
           <BeforeAfterSlider 
             beforeImage={project.beforeImage} 
@@ -55,7 +55,7 @@ export function ProjectDetail() {
         </div>
 
         {/* Content Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 mb-16 md:mb-24">
           <div className="md:col-span-4">
             <h3 className="text-xl font-bold text-white mb-4 border-b border-industrial-800 pb-4">Дано и Задача</h3>
             <p className="text-industrial-400 leading-relaxed">
@@ -81,7 +81,7 @@ export function ProjectDetail() {
         </div>
 
         {/* Testimonial */}
-        <div className="bg-industrial-800 border border-industrial-700 p-8 md:p-12 mb-24 relative">
+        <div className="bg-industrial-800 border border-industrial-700 p-6 sm:p-8 md:p-12 mb-16 md:mb-24 relative">
           <div className="absolute top-8 left-8 text-6xl text-industrial-700 font-serif leading-none">"</div>
           <div className="relative z-10">
             <p className="text-xl md:text-2xl text-white font-medium leading-relaxed mb-8">
@@ -100,7 +100,7 @@ export function ProjectDetail() {
         </div>
 
         {/* CTA */}
-        <div className="text-center bg-industrial-900 border border-industrial-800 p-12">
+        <div className="text-center bg-industrial-900 border border-industrial-800 p-6 sm:p-8 md:p-12">
           <h2 className="text-3xl font-bold text-white mb-4">Хотите такой же результат для своего производства?</h2>
           <p className="text-industrial-400 mb-8 max-w-2xl mx-auto">
             Оставьте заявку, и мы бесплатно разберём ваш текущий сайт, укажем на слабые места и предложим план редизайна.

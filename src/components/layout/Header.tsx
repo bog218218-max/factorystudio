@@ -33,29 +33,29 @@ export function Header() {
             <div className="w-10 h-10 bg-accent-500 flex items-center justify-center text-white font-mono font-bold text-sm group-hover:bg-accent-600 transition-colors">
               MF
             </div>
-            <span className="font-bold text-xl tracking-tight text-white">МАНУФАКТУРА</span>
+            <span className="font-bold text-lg sm:text-xl tracking-tight text-white">МАНУФАКТУРА</span>
           </Link>
 
           {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden lg:flex items-center gap-4 xl:gap-8">
             {navLinks.map((link) => (
-              <Link key={link.path} to={link.path} className="text-sm font-medium text-industrial-300 hover:text-white transition-colors">
+              <Link key={link.path} to={link.path} className="text-sm font-medium text-industrial-300 hover:text-white transition-colors whitespace-nowrap">
                 {link.name}
               </Link>
             ))}
           </nav>
 
-          <div className="hidden md:flex items-center gap-6">
-            <a href="tel:+79990000000" className="text-sm font-mono text-industrial-400 hover:text-white transition-colors">
+          <div className="hidden lg:flex items-center gap-4 xl:gap-6">
+            <a href="tel:+79990000000" className="text-sm font-mono text-industrial-400 hover:text-white transition-colors whitespace-nowrap">
               +7 (999) 000-00-00
             </a>
-            <Link to="/contacts" className="bg-white text-industrial-900 px-5 py-2.5 text-sm font-semibold hover:bg-industrial-200 transition-colors flex items-center gap-2">
+            <Link to="/contacts" className="bg-white text-industrial-900 px-4 py-2 xl:px-5 xl:py-2.5 text-sm font-semibold hover:bg-industrial-200 transition-colors flex items-center gap-2 whitespace-nowrap shrink-0">
               Обсудить проект <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
 
           {/* Mobile Toggle */}
-          <button className="md:hidden text-industrial-100" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+          <button className="lg:hidden text-industrial-100 p-2 -mr-2" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
             {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -63,7 +63,7 @@ export function Header() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 w-full bg-industrial-900 border-b border-industrial-800 p-6 flex flex-col gap-4 shadow-2xl pointer-events-auto mt-2">
+        <div className="lg:hidden absolute top-full left-0 w-full bg-industrial-900/95 backdrop-blur-xl border-b border-industrial-800 p-6 flex flex-col gap-4 shadow-2xl pointer-events-auto mt-2">
           {navLinks.map((link) => (
             <Link key={link.path} to={link.path} className="text-lg font-medium text-industrial-100 hover:text-accent-500 transition-colors">
               {link.name}

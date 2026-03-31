@@ -1,49 +1,63 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent } from 'motion/react';
-import { ClipboardList, PenTool, LayoutTemplate, Code2, Rocket, Wrench } from 'lucide-react';
+import { Search, Network, FileText, Palette, Code2, Blocks, CheckSquare, Rocket } from 'lucide-react';
 
 const steps = [
   {
-    icon: ClipboardList,
-    title: 'Аудит и брифинг',
+    icon: Search,
+    title: 'Погружение в бизнес',
     duration: '1-2 недели',
-    description: 'Погружаемся в ваш бизнес. Изучаем текущий сайт, анализируем конкурентов, собираем требования и определяем ключевые задачи нового ресурса.',
-    deliverables: ['Бриф', 'Аналитическая записка', 'Оценка сроков и бюджета']
+    description: 'Изучаем вашу компанию, текущее состояние сайта, специфику продукта, конкурентов и логику, по которой клиент выбирает подрядчика или поставщика. На этом этапе определяем, что именно мешает нынешнему сайту работать сильнее.',
+    deliverables: ['Бриф', 'Анализ конкурентов', 'Стратегия']
   },
   {
-    icon: PenTool,
-    title: 'Проектирование структуры',
+    icon: Network,
+    title: 'Структура и логика',
+    duration: '1-2 недели',
+    description: 'Проектируем будущую структуру сайта: какие разделы нужны, в каком порядке подавать информацию, как показать преимущества, кейсы, направления, процессы и точки контакта. Продумываем путь посетителя от первого экрана до заявки.',
+    deliverables: ['Карта сайта', 'Wireframes', 'User Flow']
+  },
+  {
+    icon: FileText,
+    title: 'Смыслы и тексты',
     duration: '2-3 недели',
-    description: 'Разрабатываем логику сайта. Создаем интерактивные прототипы всех ключевых страниц, чтобы согласовать расположение блоков и путь пользователя до начала дизайна.',
-    deliverables: ['Интерактивный прототип (Wireframes)', 'Карта сайта', 'Структура контента']
+    description: 'Переписываем подачу так, чтобы сайт говорил с клиентом понятным языком: без перегруза, без сухой канцелярщины и без пустых обещаний. Помогаем ясно объяснить, чем вы занимаетесь, в чём ваша сила и почему вам можно доверять.',
+    deliverables: ['Копирайтинг', 'УТП', 'Слоган']
   },
   {
-    icon: LayoutTemplate,
-    title: 'Дизайн-концепция',
+    icon: Palette,
+    title: 'Дизайн',
     duration: '3-4 недели',
-    description: 'Отрисовываем визуальную часть. Сначала утверждаем концепцию на главной странице, затем масштабируем стиль на все внутренние страницы и адаптируем под мобильные устройства.',
-    deliverables: ['UI-кит', 'Дизайн-макеты всех страниц', 'Адаптивные версии']
+    description: 'Создаём новый визуальный стиль сайта под задачи компании. Делаем дизайн современным, строгим и собранным, чтобы он усиливал восприятие бизнеса, а не отвлекал от сути.',
+    deliverables: ['UI-кит', 'Дизайн-макеты', 'Адаптив']
   },
   {
     icon: Code2,
-    title: 'Верстка и программирование',
+    title: 'Разработка',
     duration: '4-6 недель',
-    description: 'Переносим дизайн в код. Настраиваем анимации, подключаем систему управления контентом (CMS), интегрируем формы заявок и сторонние сервисы (CRM, аналитика).',
-    deliverables: ['Рабочий сайт на тестовом домене', 'Настроенная CMS', 'Интеграции']
+    description: 'Аккуратно собираем сайт, адаптируем под мобильные устройства, следим за скоростью загрузки и качеством реализации. На выходе вы получаете не только дизайн в макете, а готовый рабочий инструмент.',
+    deliverables: ['Верстка', 'Frontend', 'Backend/CMS']
+  },
+  {
+    icon: Blocks,
+    title: 'Интеграции и формы',
+    duration: '1-2 недели',
+    description: 'Подключаем формы заявок, аналитику, мессенджеры и, если нужно, CRM или другие сервисы, чтобы сайт был встроен в ваши бизнес-процессы, а не существовал отдельно от них.',
+    deliverables: ['CRM', 'Аналитика', 'API']
+  },
+  {
+    icon: CheckSquare,
+    title: 'Проверка перед запуском',
+    duration: '1 неделя',
+    description: 'Тестируем сайт на разных устройствах и в популярных браузерах, проверяем формы, адаптивность, кликабельность и ключевые сценарии, чтобы исключить технические ошибки до релиза.',
+    deliverables: ['QA-отчет', 'Багфикс', 'Оптимизация']
   },
   {
     icon: Rocket,
-    title: 'Тестирование и запуск',
-    duration: '1 неделя',
-    description: 'Проверяем сайт на всех устройствах и браузех. Тестируем формы, скорость загрузки и базовое SEO. После успешных тестов переносим сайт на ваш боевой домен.',
-    deliverables: ['Опубликованный сайт', 'Базовая SEO-оптимизация', 'Инструкция по управлению']
-  },
-  {
-    icon: Wrench,
-    title: 'Поддержка и развитие',
-    duration: 'Постоянно',
-    description: 'Не бросаем проект после запуска. Берем сайт на техническое обслуживание, следим за стабильностью, вносим правки и развиваем функционал по мере роста ваших задач.',
-    deliverables: ['Техническая поддержка', 'Резервное копирование', 'Доработка функционала']
+    title: 'Запуск',
+    duration: '1-2 дня',
+    description: 'Публикуем сайт, подключаем домен и SSL, проверяем финальную работу и передаём вам доступы к готовому проекту.',
+    deliverables: ['Релиз', 'Доступы', 'Инструкция']
   }
 ];
 
@@ -79,19 +93,19 @@ function ProcessStep({ step, index }: { step: typeof steps[0], index: number }) 
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         className={`flex-grow bg-industrial-900/50 backdrop-blur-md border p-8 md:p-16 transition-colors duration-300 relative overflow-hidden shadow-xl shadow-black/20 ${isLit ? 'border-industrial-500' : 'border-industrial-800'}`}
       >
-        <div className={`absolute top-0 right-0 text-[180px] font-bold font-mono leading-none -mt-12 -mr-12 select-none pointer-events-none hidden md:block transition-colors duration-300 ${isLit ? 'text-industrial-800/40' : 'text-industrial-800/20'}`}>
+        <div className={`absolute top-0 right-0 text-[100px] md:text-[180px] font-bold font-mono leading-none -mt-6 -mr-6 md:-mt-12 md:-mr-12 select-none pointer-events-none hidden md:block transition-colors duration-300 ${isLit ? 'text-industrial-800/40' : 'text-industrial-800/20'}`}>
           0{index + 1}
         </div>
         
         <div className="relative z-10">
           <div className="flex flex-col md:flex-row md:items-center gap-6 mb-8">
-            <h3 className={`text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 ${isLit ? 'text-white' : 'text-industrial-400'}`}>{step.title}</h3>
+            <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight transition-colors duration-300 ${isLit ? 'text-white' : 'text-industrial-400'}`}>{step.title}</h3>
             <span className={`inline-block px-4 py-2 bg-industrial-800/80 text-sm font-mono uppercase tracking-widest w-fit border shadow-lg transition-colors duration-300 ${isLit ? 'text-accent-500 border-accent-500/30' : 'text-industrial-500 border-industrial-700/50'}`}>
               {step.duration}
             </span>
           </div>
           
-          <p className={`text-xl leading-relaxed mb-12 max-w-3xl font-light transition-colors duration-300 ${isLit ? 'text-industrial-300' : 'text-industrial-500'}`}>
+          <p className={`text-lg sm:text-xl leading-relaxed mb-8 md:mb-12 max-w-3xl font-light transition-colors duration-300 ${isLit ? 'text-industrial-300' : 'text-industrial-500'}`}>
             {step.description}
           </p>
 
@@ -122,21 +136,21 @@ export function Process() {
   });
 
   return (
-    <div className="pt-12 pb-32 relative overflow-hidden">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/3 left-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 -translate-x-1/3" />
 
       <div className="max-w-7xl mx-auto px-6">
-        <div className="mb-24 max-w-4xl">
+        <div className="mb-16 md:mb-24 max-w-4xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-800/50 border border-industrial-700/50 backdrop-blur-md text-industrial-300 text-xs font-mono mb-8 uppercase tracking-widest shadow-xl shadow-black/20">
             <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
             Как мы работаем
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
             Прозрачный процесс <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">без сюрпризов</span>
           </h1>
-          <p className="text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
+          <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
             Разработка сложного B2B-сайта — это инженерная задача. Мы разбили её на понятные этапы, где каждый шаг завершается конкретным артефактом, который вы можете оценить.
           </p>
         </div>

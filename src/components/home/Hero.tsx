@@ -44,19 +44,19 @@ export function Hero() {
             Digital-агентство для промышленности
           </div>
           
-          <h1 className="text-5xl md:text-7xl lg:text-[6.5rem] font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[6.5rem] font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
             Сайты для <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">
               Производств
             </span>
           </h1>
           
-          <p className="text-xl md:text-2xl text-industrial-400 mb-12 max-w-3xl leading-relaxed font-light">
+          <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 mb-8 md:mb-12 max-w-3xl leading-relaxed font-light">
             Проектируем и разрабатываем премиальные B2B-решения. 
             Превращаем сложные производственные процессы в понятный и продающий цифровой продукт.
           </p>
           
-          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-16">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 mb-12 md:mb-16">
             <Link 
               to="/projects" 
               className="group relative w-full sm:w-auto px-8 py-4 bg-accent-500 text-white text-lg font-semibold overflow-hidden flex items-center justify-center gap-2 shadow-[0_0_40px_-10px_rgba(255,77,0,0.4)] hover:shadow-[0_0_60px_-15px_rgba(255,77,0,0.6)] transition-shadow"

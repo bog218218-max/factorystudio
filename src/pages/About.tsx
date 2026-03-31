@@ -12,30 +12,30 @@ const team = [
 
 export function About() {
   return (
-    <div className="pt-12 pb-32 relative overflow-hidden">
+    <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-accent-500/5 rounded-full blur-[150px] pointer-events-none -z-10 translate-x-1/3 -translate-y-1/3" />
 
       <div className="max-w-7xl mx-auto px-6">
         
         {/* Hero */}
-        <div className="mb-32 max-w-5xl">
+        <div className="mb-16 md:mb-32 max-w-5xl">
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-industrial-800/50 border border-industrial-700/50 backdrop-blur-md text-industrial-300 text-xs font-mono mb-8 uppercase tracking-widest shadow-xl shadow-black/20">
             <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
             О студии
           </div>
-          <h1 className="text-5xl md:text-7xl font-bold text-white mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
             Студия с фокусом на <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">промышленность</span>
           </h1>
-          <p className="text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
+          <p className="text-lg sm:text-xl md:text-2xl text-industrial-400 leading-relaxed font-light max-w-3xl">
             Мы не делаем сайты для барбершопов, инфобизнеса или крипто-стартапов. Наша специализация — заводы, производственные предприятия и суровый B2B. Мы знаем, как упаковать сложный продукт так, чтобы он вызывал доверие у закупщиков и партнеров.
           </p>
         </div>
 
         {/* Philosophy */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
-          <div className="aspect-square lg:aspect-auto lg:h-[600px] bg-industrial-900 border border-industrial-800 relative overflow-hidden group shadow-2xl shadow-black/50">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 md:gap-16 mb-20 md:mb-32">
+          <div className="aspect-square lg:aspect-auto h-[400px] lg:h-[600px] bg-industrial-900 border border-industrial-800 relative overflow-hidden group shadow-2xl shadow-black/50">
             <img 
               src="https://picsum.photos/seed/office/800/800?grayscale" 
               alt="Рабочий процесс" 
@@ -50,7 +50,7 @@ export function About() {
           </div>
           
           <div className="flex flex-col justify-center">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-12 tracking-tight uppercase">Наш подход</h2>
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 md:mb-12 tracking-tight uppercase">Наш подход</h2>
             <div className="flex flex-col gap-8">
               {[
                 'Глубокое погружение в нишу клиента до отрисовки первого макета',
@@ -77,9 +77,9 @@ export function About() {
         </div>
 
         {/* Team */}
-        <div className="mb-32">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 tracking-tight uppercase">Команда проекта</h2>
-          <p className="text-industrial-400 text-xl max-w-3xl mb-16 font-light leading-relaxed">
+        <div className="mb-20 md:mb-32">
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 md:mb-8 tracking-tight uppercase">Команда проекта</h2>
+          <p className="text-industrial-400 text-lg sm:text-xl max-w-3xl mb-12 md:mb-16 font-light leading-relaxed">
             Над каждым проектом работает не один человек, а слаженная команда специалистов. За счёт этого стратегия, структура, тексты, визуал и техническая часть собираются параллельно — проект идёт быстрее и получается сильнее.
           </p>
           

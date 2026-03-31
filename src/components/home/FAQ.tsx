@@ -45,7 +45,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-32 bg-industrial-900 border-t border-industrial-800 relative overflow-hidden">
+    <section className="py-16 md:py-32 bg-industrial-900 border-t border-industrial-800 relative overflow-hidden">
       {/* Background Elements */}
       <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-accent-500/5 rounded-full blur-[120px] pointer-events-none -z-10 -translate-x-1/2 -translate-y-1/2" />
       
@@ -55,7 +55,7 @@ export function FAQ() {
             <span className="w-2 h-2 bg-accent-500 rounded-full animate-pulse" />
             FAQ
           </div>
-          <h2 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tighter leading-[0.9] uppercase">
+          <h2 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white mb-6 tracking-tighter leading-[0.9] uppercase">
             Вопросы и <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">ответы</span>
           </h2>
         </div>
@@ -76,7 +76,7 @@ export function FAQ() {
                   className="w-full flex items-center justify-between p-8 text-left focus:outline-none group"
                   onClick={() => setOpenIndex(isOpen ? null : index)}
                 >
-                  <span className={`text-xl font-bold ${isOpen ? 'text-white' : 'text-industrial-300 group-hover:text-white'} transition-colors pr-8 tracking-tight`}>{faq.q}</span>
+                  <span className={`text-lg sm:text-xl font-bold ${isOpen ? 'text-white' : 'text-industrial-300 group-hover:text-white'} transition-colors pr-4 sm:pr-8 tracking-tight`}>{faq.q}</span>
                   <span className={`shrink-0 w-10 h-10 flex items-center justify-center border ${isOpen ? 'border-accent-500 text-accent-500 bg-accent-500/10' : 'border-industrial-700 text-industrial-500 group-hover:border-industrial-500 group-hover:text-industrial-300'} transition-all duration-300`}>
                     {isOpen ? <Minus className="w-5 h-5" /> : <Plus className="w-5 h-5" />}
                   </span>
@@ -90,7 +90,7 @@ export function FAQ() {
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="p-8 pt-0 text-industrial-400 text-lg leading-relaxed font-light">
+                      <div className="p-6 sm:p-8 pt-0 text-industrial-400 text-base sm:text-lg leading-relaxed font-light">
                         {faq.a}
                       </div>
                     </motion.div>
