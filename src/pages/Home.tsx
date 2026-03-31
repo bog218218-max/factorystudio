@@ -9,7 +9,7 @@ export function Home() {
   return (
     <div className="flex flex-col">
       <SEO 
-        title="Главная | СТУДИЯ-ВЕКТОР"
+        title="Главная"
         description="Проектируем и разрабатываем премиальные B2B-решения для заводов и производств."
       />
       <Hero />

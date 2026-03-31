@@ -1,13 +1,14 @@
 import { SEO } from '../components/ui/SEO';
 import { Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
+import { siteConfig } from '../config/site';
 
 export function PrivacyPolicy() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24">
       <SEO 
-        title="Политика конфиденциальности | МАНУФАКТУРА"
-        description="Политика обработки персональных данных компании МАНУФАКТУРА."
+        title="Политика конфиденциальности"
+        description={`Политика обработки персональных данных компании ${siteConfig.name}.`}
       />
       
       <div className="max-w-4xl mx-auto px-6">
@@ -21,7 +22,7 @@ export function PrivacyPolicy() {
 
         <div className="prose prose-invert prose-industrial max-w-none">
           <p className="text-industrial-300 text-lg mb-8">
-            Настоящая Политика конфиденциальности описывает, как ООО «Мануфактура Диджитал» (далее — «Оператор») собирает, использует и защищает персональные данные пользователей сайта.
+            Настоящая Политика конфиденциальности описывает, как {siteConfig.legalName} (далее — «Оператор») собирает, использует и защищает персональные данные пользователей сайта.
           </p>
 
           <h2 className="text-2xl font-bold text-white mt-12 mb-6">1. Общие положения</h2>
@@ -61,7 +62,7 @@ export function PrivacyPolicy() {
 
           <h2 className="text-2xl font-bold text-white mt-12 mb-6">5. Контакты</h2>
           <p className="text-industrial-400 mb-4">
-            Все предложения или вопросы по поводу настоящей Политики конфиденциальности пользователь вправе направлять на электронный адрес: <a href="mailto:hello@manufactura.digital" className="text-accent-500 hover:underline">hello@manufactura.digital</a>.
+            Все предложения или вопросы по поводу настоящей Политики конфиденциальности пользователь вправе направлять на электронный адрес: <a href={siteConfig.emailHref} className="text-accent-500 hover:underline">{siteConfig.email}</a>.
           </p>
           
           <p className="text-industrial-500 text-sm mt-16 pt-8 border-t border-industrial-800">

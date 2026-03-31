@@ -7,6 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
+import { siteConfig } from '../config/site';
 
 const contactSchema = z.object({
   name: z.string()
@@ -53,8 +54,8 @@ export function Contacts() {
     setIsPending(true);
     
     try {
-      // Имитация отправки формы
-      console.log('Form data:', data);
+      // Имитация отправки формы до подключения бекенда/CRM
+      void data;
       await new Promise(resolve => setTimeout(resolve, 1500));
       
       toast.success('Заявка успешно отправлена!', {
@@ -73,7 +74,7 @@ export function Contacts() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24 relative">
       <SEO 
-        title="Контакты | МАНУФАКТУРА"
+        title="Контакты"
         description="Свяжитесь с нами для обсуждения вашего проекта."
       />
       {/* Background glow */}
@@ -104,15 +105,15 @@ export function Contacts() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="flex items-start gap-6 group"
               >
-                <div className="w-16 h-16 bg-industrial-900/50 backdrop-blur-sm border border-industrial-800 flex items-center justify-center shrink-0 group-hover:bg-accent-500/10 group-hover:border-accent-500/50 transition-all duration-500">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-industrial-800 bg-industrial-900/50 backdrop-blur-sm transition-all duration-500 group-hover:border-accent-500/50 group-hover:bg-accent-500/10 md:h-16 md:w-16">
                   <Phone className="w-6 h-6 text-accent-500 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
                   <div className="text-sm font-mono text-industrial-500 mb-2 uppercase tracking-widest">Телефон</div>
-                  <a href="tel:+78000000000" className="text-3xl font-bold text-white hover:text-accent-500 transition-colors duration-300 tracking-tight">
-                    8 (800) 000-00-00
+                  <a href={siteConfig.phoneHref} className="text-2xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-accent-500 md:text-3xl">
+                    {siteConfig.phoneDisplay}
                   </a>
-                  <div className="text-base text-industrial-400 mt-2 font-light">Пн-Пт, 10:00–19:00 (МСК)</div>
+                  <div className="mt-2 text-base font-light text-industrial-400">{siteConfig.workingHours}</div>
                 </div>
               </motion.div>
 
@@ -122,13 +123,13 @@ export function Contacts() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-start gap-6 group"
               >
-                <div className="w-16 h-16 bg-industrial-900/50 backdrop-blur-sm border border-industrial-800 flex items-center justify-center shrink-0 group-hover:bg-accent-500/10 group-hover:border-accent-500/50 transition-all duration-500">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-industrial-800 bg-industrial-900/50 backdrop-blur-sm transition-all duration-500 group-hover:border-accent-500/50 group-hover:bg-accent-500/10 md:h-16 md:w-16">
                   <Mail className="w-6 h-6 text-accent-500 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
                   <div className="text-sm font-mono text-industrial-500 mb-2 uppercase tracking-widest">Email</div>
-                  <a href="mailto:hello@manufactura.digital" className="text-2xl md:text-3xl font-bold text-white hover:text-accent-500 transition-colors duration-300 tracking-tight break-all">
-                    hello@manufactura.digital
+                  <a href={siteConfig.emailHref} className="break-all text-xl font-bold tracking-tight text-white transition-colors duration-300 hover:text-accent-500 sm:text-2xl md:text-3xl">
+                    {siteConfig.email}
                   </a>
                   <div className="text-base text-industrial-400 mt-2 font-light">Для брифов и предложений</div>
                 </div>
@@ -140,15 +141,15 @@ export function Contacts() {
                 transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex items-start gap-6 group"
               >
-                <div className="w-16 h-16 bg-industrial-900/50 backdrop-blur-sm border border-industrial-800 flex items-center justify-center shrink-0 group-hover:bg-accent-500/10 group-hover:border-accent-500/50 transition-all duration-500">
+                <div className="flex h-14 w-14 shrink-0 items-center justify-center border border-industrial-800 bg-industrial-900/50 backdrop-blur-sm transition-all duration-500 group-hover:border-accent-500/50 group-hover:bg-accent-500/10 md:h-16 md:w-16">
                   <MapPin className="w-6 h-6 text-accent-500 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
                   <div className="text-sm font-mono text-industrial-500 mb-2 uppercase tracking-widest">Офис</div>
                   <div className="text-2xl font-bold text-white tracking-tight">
-                    Москва, БЦ «Промышленный»
+                    {siteConfig.addressTitle}
                   </div>
-                  <div className="text-base text-industrial-400 mt-2 font-light">ул. Заводская, д. 1, офис 404</div>
+                  <div className="text-base text-industrial-400 mt-2 font-light">{siteConfig.addressLine}</div>
                 </div>
               </motion.div>
             </div>
@@ -161,10 +162,10 @@ export function Contacts() {
             >
               <h3 className="text-xl font-bold text-white mb-6 uppercase tracking-tight">Реквизиты</h3>
               <div className="text-base text-industrial-400 font-mono flex flex-col gap-3">
-                <p className="text-industrial-300">ООО «Мануфактура Диджитал»</p>
-                <p>ИНН: 7700000000</p>
-                <p>КПП: 770001001</p>
-                <p>ОГРН: 1230000000000</p>
+                <p className="text-industrial-300">{siteConfig.legalName}</p>
+                <p>ИНН: {siteConfig.legal.inn}</p>
+                <p>КПП: {siteConfig.legal.kpp}</p>
+                <p>ОГРН: {siteConfig.legal.ogrn}</p>
               </div>
             </motion.div>
           </div>

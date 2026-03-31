@@ -33,7 +33,7 @@ export function ProjectDetail() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24">
       <SEO 
-        title={`${project.title} | Проекты | МАНУФАКТУРА`}
+        title={`${project.title} | Проекты`}
         description={`Кейс: ${project.title}. ${project.type} в сфере ${project.category}.`}
         image={project.image}
       />

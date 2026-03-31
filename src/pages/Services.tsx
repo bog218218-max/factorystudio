@@ -38,7 +38,7 @@ export function Services() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden bg-industrial-950">
       <SEO 
-        title="Услуги и форматы работы | МАНУФАКТУРА"
+        title="Услуги и форматы работы"
         description="Разработка и редизайн сайтов для промышленных компаний."
       />
       {/* Background glow */}
@@ -79,7 +79,7 @@ export function Services() {
               </div>
 
               {service.highlight && (
-                <div className="absolute top-0 right-0 bg-accent-500 text-white text-xs font-mono px-6 py-2 uppercase tracking-widest shadow-lg shadow-accent-500/20 z-20">
+                <div className="absolute top-0 right-0 z-20 bg-accent-500 px-4 py-2 text-[10px] font-mono uppercase tracking-widest text-white shadow-lg shadow-accent-500/20 sm:px-6 sm:text-xs">
                   Частый запрос
                 </div>
               )}

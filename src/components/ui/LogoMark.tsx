@@ -5,7 +5,7 @@ type LogoMarkProps = {
 export function LogoMark({ className = 'w-10 h-10' }: LogoMarkProps) {
   return (
     <div
-      className={`${className} bg-accent-500 flex items-center justify-center text-white transition-colors`}
+      className={`${className} min-h-[44px] min-w-[44px] bg-accent-500 flex items-center justify-center text-white transition-colors`}
       aria-hidden="true"
     >
       <svg

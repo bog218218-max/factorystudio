@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { LogoMark } from '../ui/LogoMark';
+import { siteConfig } from '../../config/site';
 
 export function Footer() {
   return (
@@ -9,7 +10,7 @@ export function Footer() {
           <div className="col-span-1 md:col-span-2">
             <Link to="/" className="flex items-center gap-4 mb-6">
               <LogoMark />
-              <span className="font-bold text-xl tracking-wide text-white">СТУДИЯ-ВЕКТОР</span>
+              <span className="text-lg font-bold tracking-wide text-white sm:text-xl">{siteConfig.name}</span>
             </Link>
             <p className="text-industrial-400 max-w-sm mb-8 leading-relaxed">
               Помогаем заводам, производствам и промышленным компаниям обновить устаревшие сайты и привести их в соответствие с реальным уровнем бизнеса.
@@ -29,10 +30,10 @@ export function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-6">Контакты</h4>
             <ul className="flex flex-col gap-4">
-              <li><a href="tel:+79990000000" className="text-industrial-400 hover:text-white transition-colors font-mono">+7 (999) 000-00-00</a></li>
-              <li><a href="mailto:hello@manufactura.ru" className="text-industrial-400 hover:text-white transition-colors">hello@manufactura.ru</a></li>
-              <li><a href="#" className="text-industrial-400 hover:text-white transition-colors">Telegram</a></li>
-              <li><a href="#" className="text-industrial-400 hover:text-white transition-colors">WhatsApp</a></li>
+              <li><a href={siteConfig.phoneHref} className="text-industrial-400 hover:text-white transition-colors font-mono">{siteConfig.phoneDisplay}</a></li>
+              <li><a href={siteConfig.emailHref} className="text-industrial-400 hover:text-white transition-colors">{siteConfig.email}</a></li>
+              <li><span className="text-industrial-500">{siteConfig.workingHours}</span></li>
+              <li><span className="text-industrial-500">{siteConfig.addressTitle}</span></li>
             </ul>
           </div>
         </div>

@@ -15,7 +15,7 @@ export function Projects() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       <SEO 
-        title="Наши проекты | МАНУФАКТУРА"
+        title="Наши проекты"
         description="Портфолио сайтов для промышленных компаний и заводов."
       />
       {/* Background glow */}
@@ -41,7 +41,7 @@ export function Projects() {
             <button
               key={category}
               onClick={() => setActiveCategory(category)}
-              className={`px-4 py-2 md:px-8 md:py-4 text-xs md:text-sm font-semibold transition-all duration-500 uppercase tracking-widest border ${
+              className={`min-h-[44px] px-4 py-2 md:px-8 md:py-4 text-xs md:text-sm font-semibold transition-all duration-500 uppercase tracking-widest border ${
                 activeCategory === category 
                   ? 'bg-white text-industrial-900 border-white shadow-[0_0_30px_rgba(255,255,255,0.2)]' 
                   : 'bg-industrial-900/50 text-industrial-400 border-industrial-800 hover:bg-industrial-800 hover:text-white hover:border-industrial-600 backdrop-blur-sm'

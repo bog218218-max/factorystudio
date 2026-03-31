@@ -1,0 +1,17 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#0A0A0A"/>
+  <rect opacity="0.28" x="0" y="0" width="1200" height="630" fill="url(#grid)"/>
+  <circle cx="960" cy="126" r="240" fill="#FF4D00" fill-opacity="0.14"/>
+  <circle cx="160" cy="520" r="220" fill="#FF4D00" fill-opacity="0.12"/>
+  <rect x="96" y="96" width="116" height="116" fill="#FF4D00"/>
+  <path d="M128 180L180 128" stroke="white" stroke-width="12" stroke-linecap="square"/>
+  <path d="M156 128H180V152" stroke="white" stroke-width="12" stroke-linecap="square"/>
+  <text x="268" y="170" fill="white" font-size="72" font-family="Inter, Arial, sans-serif" font-weight="700">СТУДИЯ-ВЕКТОР</text>
+  <text x="96" y="318" fill="white" font-size="64" font-family="Inter, Arial, sans-serif" font-weight="700">Сайты для промышленных компаний</text>
+  <text x="96" y="392" fill="#A3A3A3" font-size="32" font-family="Inter, Arial, sans-serif">Редизайн, разработка и цифровая упаковка заводов и производств.</text>
+  <defs>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="white" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+</svg>

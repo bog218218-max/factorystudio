@@ -64,7 +64,7 @@ export function ServiceDetail() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-24">
       <SEO 
-        title={`${service.title} | Услуги | МАНУФАКТУРА`}
+        title={`${service.title} | Услуги`}
         description={service.subtitle}
       />
       <div className="max-w-4xl mx-auto px-6">

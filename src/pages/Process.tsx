@@ -128,7 +128,7 @@ export function Process() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       <SEO 
-        title="Этапы работы | МАНУФАКТУРА"
+        title="Этапы работы"
         description="Прозрачный процесс разработки B2B-сайта без сюрпризов."
       />
       {/* Background glow */}

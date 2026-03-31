@@ -7,8 +7,9 @@ export function NotFound() {
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center relative px-6">
       <SEO 
-        title="Страница не найдена | МАНУФАКТУРА"
+        title="Страница не найдена"
         description="Запрашиваемая страница не существует."
+        noIndex
       />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-500/5 rounded-full blur-[120px] pointer-events-none -z-10" />
       

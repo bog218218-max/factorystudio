@@ -1,6 +1,7 @@
 import { motion } from 'motion/react';
 import { CheckCircle2 } from 'lucide-react';
 import { SEO } from '../components/ui/SEO';
+import { siteConfig } from '../config/site';
 
 const team = [
   { role: 'Менеджер проекта', desc: 'Ведёт проект целиком: собирает задачи, фиксирует договорённости, держит график и остаётся вашей основной точкой контакта.' },
@@ -15,7 +16,7 @@ export function About() {
   return (
     <div className="pt-24 md:pt-32 pb-16 md:pb-32 relative overflow-hidden">
       <SEO 
-        title="О студии | МАНУФАКТУРА"
+        title="О студии"
         description="Студия с фокусом на промышленность и B2B."
       />
       {/* Background glow */}
@@ -49,9 +50,9 @@ export function About() {
               loading="lazy"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-industrial-900 via-industrial-900/50 to-transparent" />
-            <div className="absolute bottom-12 left-12 right-12">
-              <div className="text-4xl font-bold text-white mb-4 tracking-tight uppercase">Без воды и шаблонов</div>
-              <div className="text-xl text-industrial-400 font-light leading-relaxed">Только факты, цифры и реальные возможности вашего бизнеса.</div>
+            <div className="absolute bottom-6 left-6 right-6 sm:bottom-12 sm:left-12 sm:right-12">
+              <div className="mb-3 text-2xl font-bold uppercase tracking-tight text-white sm:mb-4 sm:text-4xl">Без воды и шаблонов</div>
+              <div className="text-base font-light leading-relaxed text-industrial-400 sm:text-xl">Только факты, цифры и реальные возможности вашего бизнеса.</div>
             </div>
           </div>
           
@@ -125,9 +126,9 @@ export function About() {
             <p className="text-industrial-400 text-lg font-light leading-relaxed max-w-xl">Работаем по договору, предоставляем все закрывающие документы (ЭДО).</p>
           </div>
           <div className="text-left md:text-right font-mono text-sm text-industrial-500 space-y-2 relative z-10">
-            <p className="text-industrial-300 text-base font-bold tracking-wider">ООО «Мануфактура Диджитал»</p>
-            <p className="tracking-widest">ИНН: 7700000000</p>
-            <p className="tracking-widest">ОГРН: 1230000000000</p>
+            <p className="text-industrial-300 text-base font-bold tracking-wider">{siteConfig.legalName}</p>
+            <p className="tracking-widest">ИНН: {siteConfig.legal.inn}</p>
+            <p className="tracking-widest">ОГРН: {siteConfig.legal.ogrn}</p>
           </div>
         </motion.div>
 

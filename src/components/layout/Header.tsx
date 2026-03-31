@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { LogoMark } from '../ui/LogoMark';
+import { siteConfig } from '../../config/site';
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -31,9 +32,11 @@ export function Header() {
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 pointer-events-none ${isScrolled ? 'pt-4 px-4 md:px-6' : 'pt-6 px-4 md:px-6'}`}>
       <div className="max-w-7xl mx-auto">
         <div className={`flex items-center justify-between pointer-events-auto transition-all duration-300 ${isScrolled ? 'bg-industrial-900/80 backdrop-blur-xl border border-industrial-700/50 h-16 md:h-20 px-6 shadow-2xl shadow-black/50' : 'bg-transparent h-20 px-2'}`}>
-          <Link to="/" className="flex items-center gap-4 group">
-            <LogoMark className="w-10 h-10 group-hover:bg-accent-600" />
-            <span className="font-bold text-lg sm:text-xl tracking-wide text-white">СТУДИЯ-ВЕКТОР</span>
+          <Link to="/" className="flex min-w-0 items-center gap-3 sm:gap-4 group">
+            <LogoMark className="w-9 h-9 shrink-0 sm:w-10 sm:h-10 group-hover:bg-accent-600" />
+            <span className="min-w-0 text-sm font-bold leading-none tracking-wide text-white sm:text-lg md:text-xl">
+              {siteConfig.name}
+            </span>
           </Link>
 
           {/* Desktop Nav */}
@@ -46,8 +49,8 @@ export function Header() {
           </nav>
 
           <div className="hidden lg:flex items-center gap-4 xl:gap-6">
-            <a href="tel:+79990000000" className="text-sm font-mono text-industrial-400 hover:text-white transition-colors whitespace-nowrap">
-              +7 (999) 000-00-00
+            <a href={siteConfig.phoneHref} className="text-sm font-mono text-industrial-400 hover:text-white transition-colors whitespace-nowrap">
+              {siteConfig.phoneDisplay}
             </a>
             <Link to="/contacts" className="bg-white text-industrial-900 px-4 py-2 xl:px-5 xl:py-2.5 text-sm font-semibold hover:bg-industrial-200 transition-colors flex items-center gap-2 whitespace-nowrap shrink-0">
               Обсудить проект <ArrowRight className="w-4 h-4" />
@@ -81,8 +84,8 @@ export function Header() {
               </Link>
             ))}
             <div className="mt-4 pt-4 border-t border-industrial-800 flex flex-col gap-4">
-              <a href="tel:+79990000000" className="text-lg font-mono text-industrial-400">
-                +7 (999) 000-00-00
+              <a href={siteConfig.phoneHref} className="text-lg font-mono text-industrial-400">
+                {siteConfig.phoneDisplay}
               </a>
               <Link to="/contacts" className="bg-accent-500 text-white px-5 py-3 text-center font-semibold hover:bg-accent-600 transition-colors">
                 Обсудить проект

@@ -14,7 +14,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [0.3, 0]);
 
   return (
-    <section ref={ref} className="relative pt-36 pb-32 md:pt-52 md:pb-48 overflow-hidden min-h-[90vh] flex flex-col justify-center">
+    <section ref={ref} className="relative flex min-h-[82vh] flex-col justify-center overflow-hidden pt-32 pb-20 sm:pb-24 md:min-h-[90vh] md:pt-52 md:pb-48">
       {/* Background Image with Parallax */}
       <motion.div style={{ y, opacity }} className="absolute inset-0 -z-20">
         <img 
@@ -40,7 +40,7 @@ export function Hero() {
           transition={{ duration: 0.5 }}
           className="max-w-5xl"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[6.5rem] font-bold text-white mb-6 md:mb-8 tracking-tighter leading-[0.9] uppercase">
+          <h1 className="mb-6 text-4xl font-bold uppercase leading-[0.92] tracking-tight text-white sm:text-5xl md:mb-8 md:text-7xl md:tracking-tighter lg:text-[6.5rem]">
             Сайты для <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-600">
               Производств
@@ -70,13 +70,13 @@ export function Hero() {
             </Link>
           </div>
           
-          <div className="flex flex-wrap items-center gap-x-12 gap-y-4 pt-8 border-t border-industrial-800/50">
+          <div className="flex flex-col gap-4 border-t border-industrial-800/50 pt-8 sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-12">
             {[
               'Редизайн под производственную нишу',
               'Фиксированная стоимость',
               '30 дней поддержки после запуска'
             ].map((text, i) => (
-              <div key={i} className="flex items-center gap-3 text-sm text-industrial-300 font-medium whitespace-nowrap">
+              <div key={i} className="flex items-center gap-3 text-sm font-medium text-industrial-300 sm:whitespace-nowrap">
                 <CheckCircle2 className="w-5 h-5 text-accent-500 shrink-0" />
                 <span>{text}</span>
               </div>
